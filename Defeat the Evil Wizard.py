@@ -227,7 +227,9 @@ def battle(player, wizard):
         turn += 1
 
     if wizard.health <= 0:
-        print(f"The wizard {wizard.name} has been defeated by {player.name}!")
+        print(f"\nCongratulations, {player.name}! You have defeated the evil wizard {wizard.name} and saved the realm!")
+    elif player.health <= 0:
+        print(f"\nDefeat! {player.name} has fallen. The evil wizard {wizard.name} reigns supreme...")
 
 # Main function to handle the flow of the game
 def main():
