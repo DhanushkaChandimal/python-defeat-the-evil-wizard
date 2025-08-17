@@ -33,6 +33,15 @@ class Mage(Character):
 
     # Add your cast spell method here
 
+# Archer class (inherits from Character)
+class Archer(Character):
+    def __init__(self, name):
+        super().__init__(name, health=110, attack_power=30)  # Balanced health and attack
+
+# Paladin class (inherits from Character)
+class Paladin(Character):
+    def __init__(self, name):
+        super().__init__(name, health=130, attack_power=20)  # Defensive stats
 
 # EvilWizard class (inherits from Character)
 class EvilWizard(Character):
@@ -60,11 +69,9 @@ def create_character():
     elif class_choice == '2':
         return Mage(name)
     elif class_choice == '3':
-        # Add Archer class here
-        pass
+        return Archer(name)
     elif class_choice == '4':
-        # Add Paladin class here
-        pass
+        return Paladin(name)
     else:
         print("Invalid choice. Defaulting to Warrior.")
         return Warrior(name)
