@@ -132,13 +132,15 @@ def create_character():
 
 # Battle function with user menu for actions
 def battle(player, wizard):
+    turn = 1
     while wizard.health > 0 and player.health > 0:
-        print("\n--- Your Turn ---")
+        print(f"\n--- Turn {turn} ---")
+        print("Your options:")
         print("1. Attack")
         print("2. Use Special Ability")
         print("3. Heal")
         print("4. View Stats")
-        
+        print("5. Quit Battle")
         choice = input("Choose an action: ")
 
         if choice == '1':
@@ -186,15 +188,20 @@ def battle(player, wizard):
                 else:
                     print("Invalid ability.")
         elif choice == '3':
-                player.heal()
+            player.heal()
         elif choice == '4':
             player.display_stats()
+            wizard.display_stats()
+        elif choice == '5':
+            print("You have chosen to quit the battle.")
+            break
         else:
             print("Invalid choice, try again.")
             continue
 
         # Evil Wizard's turn to attack and regenerate
         if wizard.health > 0:
+            print(f"\n{wizard.name}'s turn!")
             wizard.regenerate()
             # Defensive ability checks for all classes
             if isinstance(player, Archer) and getattr(player, 'evade_next', False):
@@ -217,6 +224,7 @@ def battle(player, wizard):
         if player.health <= 0:
             print(f"{player.name} has been defeated!")
             break
+        turn += 1
 
     if wizard.health <= 0:
         print(f"The wizard {wizard.name} has been defeated by {player.name}!")
