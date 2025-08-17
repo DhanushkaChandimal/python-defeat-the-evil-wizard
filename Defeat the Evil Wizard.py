@@ -36,6 +36,10 @@ class Warrior(Character):
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
 
+    def shield_bash(self, opponent):
+        print(f"{self.name} uses Shield Bash! {opponent.name} is stunned and skips their next turn.")
+        opponent.stunned = True
+
 
 # Mage class (inherits from Character)
 class Mage(Character):
@@ -48,6 +52,10 @@ class Mage(Character):
         print(f"{self.name} casts a powerful spell on {opponent.name} for {damage} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
+
+    def mana_shield(self):
+        print(f"{self.name} uses Mana Shield! Next damage taken is reduced by 15.")
+        self.mana_shield_active = True
 
 # Archer class (inherits from Character)
 class Archer(Character):
