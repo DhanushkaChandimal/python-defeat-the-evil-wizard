@@ -29,7 +29,12 @@ class Warrior(Character):
     def __init__(self, name):
         super().__init__(name, health=140, attack_power=25)  # Boost health and attack power
 
-    # Add your power attack method here
+    def power_attack(self, opponent):
+        damage = self.attack_power * 2
+        opponent.health -= damage
+        print(f"{self.name} uses Power Attack on {opponent.name} for {damage} damage!")
+        if opponent.health <= 0:
+            print(f"{opponent.name} has been defeated!")
 
 
 # Mage class (inherits from Character)
@@ -37,7 +42,12 @@ class Mage(Character):
     def __init__(self, name):
         super().__init__(name, health=100, attack_power=35)  # Boost attack power
 
-    # Add your cast spell method here
+    def cast_spell(self, opponent):
+        damage = self.attack_power + 20
+        opponent.health -= damage
+        print(f"{self.name} casts a powerful spell on {opponent.name} for {damage} damage!")
+        if opponent.health <= 0:
+            print(f"{opponent.name} has been defeated!")
 
 # Archer class (inherits from Character)
 class Archer(Character):
