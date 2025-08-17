@@ -192,7 +192,23 @@ def battle(player, wizard):
         # Evil Wizard's turn to attack and regenerate
         if wizard.health > 0:
             wizard.regenerate()
-            wizard.attack(player)
+            # Defensive ability checks for all classes
+            if isinstance(player, Archer) and getattr(player, 'evade_next', False):
+                print(f"{player.name} evades the attack from {wizard.name}!")
+                player.evade_next = False
+            elif getattr(wizard, 'stunned', False):
+                print(f"{wizard.name} is stunned and cannot attack this turn!")
+                wizard.stunned = False
+            elif isinstance(player, Mage) and getattr(player, 'mana_shield_active', False):
+                reduced_damage = max(0, wizard.attack_power - 15)
+                player.health -= reduced_damage
+                print(f"{player.name}'s Mana Shield reduces damage! Takes {reduced_damage} damage.")
+                player.mana_shield_active = False
+            elif isinstance(player, Paladin) and getattr(player, 'shield_active', False):
+                print(f"{player.name}'s Divine Shield blocks the attack from {wizard.name}!")
+                player.shield_active = False
+            else:
+                wizard.attack(player)
 
         if player.health <= 0:
             print(f"{player.name} has been defeated!")
