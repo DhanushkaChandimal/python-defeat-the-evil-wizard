@@ -38,10 +38,36 @@ class Archer(Character):
     def __init__(self, name):
         super().__init__(name, health=110, attack_power=30)  # Balanced health and attack
 
+        self.evade_next = False  # Track if evade is active
+
+    def quick_shot(self, opponent):
+        damage = self.attack_power * 2  # Double arrow attack
+        opponent.health -= damage
+        print(f"{self.name} uses Quick Shot on {opponent.name} for {damage} damage!")
+        if opponent.health <= 0:
+            print(f"{opponent.name} has been defeated!")
+
+    def evade(self):
+        self.evade_next = True
+        print(f"{self.name} prepares to evade the next attack!")
+
 # Paladin class (inherits from Character)
 class Paladin(Character):
     def __init__(self, name):
         super().__init__(name, health=130, attack_power=20)  # Defensive stats
+
+        self.shield_active = False  # Track if shield is active
+
+    def holy_strike(self, opponent):
+        damage = self.attack_power + 20  # Bonus damage
+        opponent.health -= damage
+        print(f"{self.name} uses Holy Strike on {opponent.name} for {damage} damage!")
+        if opponent.health <= 0:
+            print(f"{opponent.name} has been defeated!")
+
+    def divine_shield(self):
+        self.shield_active = True
+        print(f"{self.name} activates Divine Shield and will block the next attack!")
 
 # EvilWizard class (inherits from Character)
 class EvilWizard(Character):
