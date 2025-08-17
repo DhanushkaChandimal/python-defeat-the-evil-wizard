@@ -140,11 +140,49 @@ def battle(player, wizard):
         if choice == '1':
             player.attack(wizard)
         elif choice == '2':
-            # Call the special ability here
-            pass  # Implement this
+            # Special abilities menu for each class
+            if isinstance(player, Warrior):
+                print("1. Power Attack (double damage)")
+                print("2. Shield Bash (stuns opponent)")
+                ability = input("Choose your Warrior ability: ")
+                if ability == '1':
+                    player.power_attack(wizard)
+                elif ability == '2':
+                    player.shield_bash(wizard)
+                else:
+                    print("Invalid ability.")
+            elif isinstance(player, Mage):
+                print("1. Cast Spell (bonus damage)")
+                print("2. Mana Shield (reduces next damage)")
+                ability = input("Choose your Mage ability: ")
+                if ability == '1':
+                    player.cast_spell(wizard)
+                elif ability == '2':
+                    player.mana_shield()
+                else:
+                    print("Invalid ability.")
+            elif isinstance(player, Archer):
+                print("1. Quick Shot (double arrow attack)")
+                print("2. Evade (evades next attack)")
+                ability = input("Choose your Archer ability: ")
+                if ability == '1':
+                    player.quick_shot(wizard)
+                elif ability == '2':
+                    player.evade()
+                else:
+                    print("Invalid ability.")
+            elif isinstance(player, Paladin):
+                print("1. Holy Strike (bonus damage)")
+                print("2. Divine Shield (blocks next attack)")
+                ability = input("Choose your Paladin ability: ")
+                if ability == '1':
+                    player.holy_strike(wizard)
+                elif ability == '2':
+                    player.divine_shield()
+                else:
+                    print("Invalid ability.")
         elif choice == '3':
-            # Call the heal method here
-            pass  # Implement this
+                player.heal()
         elif choice == '4':
             player.display_stats()
         else:
