@@ -238,11 +238,20 @@ def battle(player, wizard):
 # Main function to handle the flow of the game
 def main():
     # Story intro
-    print("""
-    Welcome to Defeat the Evil Wizard!
-    The realm is in peril. The Dark Wizard has cast a shadow over the land.
-    Only a true hero can defeat him. Choose your class, gather your courage, and prepare for battle!
-    """)
+    print("""    /\\
+   /  \\
+   |  |         Welcome to Defeat the Evil Wizard!
+   |  |         The realm is in peril. The Dark Wizard has cast a shadow over the land.
+   |  |         Only a true hero can defeat him.
+   |  |         Choose your class, gather your courage,
+   |  |         and prepare for battle!
+   |  |
+   |  |
+   |  |
+  /____\\
+    ||
+    ||
+""")
     while True:
         # Character creation phase
         player = create_character()
@@ -258,6 +267,6 @@ def main():
         if replay != 'y':
             print("Thank you for playing! Farewell, hero!")
             break
-        
+
 if __name__ == "__main__":
     main()
