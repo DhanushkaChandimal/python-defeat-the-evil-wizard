@@ -1,5 +1,7 @@
 # Defeat the Evil Wizard
 import random
+
+RESET = '\033[0m'
 # Base Character class
 class Character:
     def __init__(self, name, health, attack_power):
@@ -14,7 +16,7 @@ class Character:
         max_damage = int(self.attack_power * 1.3)
         damage = random.randint(min_damage, max_damage)
         opponent.health -= damage
-        print(f"{self.name} attacks {opponent.name} for {damage} damage!")
+        print(f"{'\033[91m'}{self.name} attacks {opponent.name} for {damage} damage!{RESET}")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
 
@@ -25,7 +27,7 @@ class Character:
         heal_amount = 20
         if self.health < self.max_health:
             self.health = min(self.max_health, self.health + heal_amount)
-            print(f"{self.name} heals for {heal_amount} health! Current health: {self.health}")
+            print(f"{'\033[92m'}{self.name} heals for {heal_amount} health! Current health: {self.health}{RESET}")
         else:
             print(f"{self.name} is already at full health!")
 
@@ -107,7 +109,7 @@ class EvilWizard(Character):
     # Evil Wizard's special ability: it can regenerate health
     def regenerate(self):
         self.health += 5  # Lower regeneration amount
-        print(f"{self.name} regenerates 5 health! Current health: {self.health}")
+        print(f"{self.name} regenerates 5 health! Current health: {'\033[1m'}{self.health}{RESET}")
 
 # Function to create player character based on user input
 def create_character():
@@ -137,7 +139,7 @@ def battle(player, wizard):
     turn = 1
     while wizard.health > 0 and player.health > 0:
         print(f"\n--- Turn {turn} ---")
-        print("Your options:")
+        print(f"{'\033[4m'}Your options:{RESET}")
         print("1. Attack")
         print("2. Use Special Ability")
         print("3. Heal")
@@ -203,7 +205,7 @@ def battle(player, wizard):
 
         # Evil Wizard's turn to attack and regenerate
         if wizard.health > 0:
-            print(f"\n{wizard.name}'s turn!")
+            print(f"\n{'\033[4m'}{wizard.name}'s turn!{RESET}")
             wizard.regenerate()
             # Defensive ability checks for all classes
             if isinstance(player, Archer) and getattr(player, 'evade_next', False):
@@ -229,9 +231,9 @@ def battle(player, wizard):
         turn += 1
 
     if wizard.health <= 0:
-        print(f"\nCongratulations, {player.name}! You have defeated the evil wizard {wizard.name} and saved the realm!")
+        print(f"\n{'\033[102m'}Congratulations, {player.name}! You have defeated the evil wizard {wizard.name} and saved the realm!{RESET}")
     elif player.health <= 0:
-        print(f"\nDefeat! {player.name} has fallen. The evil wizard {wizard.name} reigns supreme...")
+        print(f"\n{'\033[101m'}Defeat! {player.name} has fallen. The evil wizard {wizard.name} reigns supreme...{RESET}")
 
 # Main function to handle the flow of the game
 def main():
