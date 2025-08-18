@@ -1,3 +1,4 @@
+# Defeat the Evil Wizard
 import random
 # Base Character class
 class Character:
@@ -8,6 +9,7 @@ class Character:
         self.max_health = health  # Store the original health for maximum limit
 
     def attack(self, opponent):
+        # Basic attack with random damage
         min_damage = max(1, int(self.attack_power * 0.5))
         max_damage = int(self.attack_power * 1.3)
         damage = random.randint(min_damage, max_damage)
@@ -233,14 +235,27 @@ def battle(player, wizard):
 
 # Main function to handle the flow of the game
 def main():
-    # Character creation phase
-    player = create_character()
+    # Story intro
+    print("""
+    Welcome to Defeat the Evil Wizard!
+    The realm is in peril. The Dark Wizard has cast a shadow over the land.
+    Only a true hero can defeat him. Choose your class, gather your courage, and prepare for battle!
+    """)
+    while True:
+        # Character creation phase
+        player = create_character()
 
-    # Evil Wizard is created
-    wizard = EvilWizard("The Dark Wizard")
+        # Evil Wizard is created
+        wizard = EvilWizard("The Dark Wizard")
 
-    # Start the battle
-    battle(player, wizard)
+        # Start the battle
+        battle(player, wizard)
 
+        # Replay option
+        replay = input("\nWould you like to play again? (y/n): ").lower()
+        if replay != 'y':
+            print("Thank you for playing! Farewell, hero!")
+            break
+        
 if __name__ == "__main__":
     main()
